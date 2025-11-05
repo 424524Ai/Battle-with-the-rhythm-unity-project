@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f046fd76d5d525d4691aef1da44d2d9e, type: 3}
+  m_Name: ultimate-gaming-soundtrack-for-legends_astronaut-272122
+  m_EditorClassIdentifier: 
+  songName: ultimate-gaming-soundtrack-for-legends_astronaut-272122
+  musicClip: {fileID: 8300000, guid: 2b35d36c2f1c42d4f8298aa93e18149f, type: 3}
+  chartData: {fileID: 4900000, guid: 557c53319f3c2bc44aa8edec5d58fa9c, type: 3}
+  coverImage: {fileID: 21300000, guid: 8a4bd0fd1ac134f409bce9636c45c39b, type: 3}
