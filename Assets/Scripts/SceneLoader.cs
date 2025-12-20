@@ -24,4 +24,9 @@ public class SceneLoader : MonoBehaviour
         Debug.Log("Quit Game!");
         Application.Quit();
     }
+
+    public void BackToSelectScene
+    {
+        SceneManager.LoadScene("SelectTrackScene");
+    }
 }

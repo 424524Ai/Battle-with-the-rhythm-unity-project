@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    // Noise sound
+    public AudioClip missSfx;
+
     // enemy speed
     public float speed = 5f;
 
     private Transform player;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -22,7 +26,6 @@ public class Enemy : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            // 后续可加入perfect great miss判断
             JudgeHit();
         }
     }
@@ -51,10 +54,22 @@ public class Enemy : MonoBehaviour
             Debug.Log("Miss!");
             result = "Miss";
             GameResultData.missCount++;
+
+            // play noise sound
+            PlayMissSfx();
         }
 
         Debug.Log(result);
         HitEffectManager.Instance.ShowHitResult(result);
         Destroy(gameObject);
     }
+
+    private void PlayMissSfx()
+    {
+        if(missSfx != null)
+        {
+            AudioSource.PlayClipAtPoint(missSfx, transform.position, 1f); 
+        }
+    }
+    
 }

@@ -143,10 +143,6 @@
     {"time":96.90,"lane":"top"},
     {"time":97.60,"lane":"bottom"},
     {"time":98.30,"lane":"top"},
-    {"time":99.00,"lane":"bottom"},
-    {"time":99.70,"lane":"top"},
-    {"time":100.40,"lane":"bottom"},
-    {"time":101.10,"lane":"top"},
-    {"time":101.80,"lane":"bottom"}
+    {"time":99.00,"lane":"bottom"}
   ]
 }

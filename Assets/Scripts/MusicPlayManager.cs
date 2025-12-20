@@ -9,7 +9,7 @@ public class MusicPlayManager : MonoBehaviour
 {
     [Header("Music & Chart")]
     public AudioSource audioSource;
-    public TextAsset chartJSON;  // JSON 文件
+    public TextAsset chartJSON;  // JSON file
     public AudioClip musicClip;  // 可选：如果 JSON 不含 clip，可在 Inspector 指定
 
     [Header("Enemy Prefabs & Spawn Points")]
@@ -72,6 +72,7 @@ public class MusicPlayManager : MonoBehaviour
 
     void Update()
     {
+        if (PauseManager.isPaused) return;
         // 检测音乐结束
         if (!audioSource.isPlaying && audioSource.time > 0.1f)
         {
@@ -86,7 +87,8 @@ public class MusicPlayManager : MonoBehaviour
         foreach (var note in chart.notes)
         {
             // 等待到音符对应时间
-            yield return new WaitUntil(() => audioSource.time >= note.time);
+            //yield return new WaitUntil(() => audioSource.time >= note.time);
+            yield return new WaitUntil(() => !PauseManager.isPaused && audioSource.time >= note.time);
 
             // 选择 prefab 和 spawn point
             GameObject prefab = note.lane == "top" ? enemyTopPrefab : enemyBottomPrefab;
