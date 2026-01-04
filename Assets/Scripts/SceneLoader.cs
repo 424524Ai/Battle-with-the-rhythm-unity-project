@@ -11,21 +11,19 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
-    // 重新加载当前场景（比如 Restart）
     public void ReloadCurrentScene()
     {
         Scene current = SceneManager.GetActiveScene();
         SceneManager.LoadScene(current.name);
     }
 
-    // 退出游戏（只在打包后有效）
     public void QuitGame()
     {
         Debug.Log("Quit Game!");
         Application.Quit();
     }
 
-    public void BackToSelectScene
+    public void BackToSelectScene()
     {
         SceneManager.LoadScene("SelectTrackScene");
     }

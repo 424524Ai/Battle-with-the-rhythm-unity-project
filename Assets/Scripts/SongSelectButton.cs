@@ -17,14 +17,14 @@ public class SongSelectButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // 设置显示内容
-        if(coverImage != null) coverImage.sprite = songData.coverImage;
+        // Set display content
+        if (coverImage != null) coverImage.sprite = songData.coverImage;
         if(titleText != null) titleText.text = songData.songName;
 
-        // 获取管理器引用
+        // Get manager reference
         manager = FindObjectOfType<SongSelectManager>();
 
-        // 初始隐藏选中边框
+        // Initially hide the selected border
         if (highlightBorder != null)
             highlightBorder.enabled = false;
 

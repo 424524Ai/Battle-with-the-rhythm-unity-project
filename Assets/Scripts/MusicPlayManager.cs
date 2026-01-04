@@ -9,8 +9,6 @@ public class MusicPlayManager : MonoBehaviour
 {
     [Header("Music & Chart")]
     public AudioSource audioSource;
-    public TextAsset chartJSON;  // JSON file
-    public AudioClip musicClip;  // 可选：如果 JSON 不含 clip，可在 Inspector 指定
 
     [Header("Enemy Prefabs & Spawn Points")]
     public GameObject enemyTopPrefab;
@@ -18,11 +16,11 @@ public class MusicPlayManager : MonoBehaviour
     public Transform topLane;
     public Transform bottomLane;
 
-    //内部数据结构
+    // Internal data structure
     [System.Serializable]
     public class NoteData
     {
-        public float time;   // 秒
+        public float time;   // secs
         public string lane;  // "top" / "bottom"
     }
 
@@ -39,41 +37,31 @@ public class MusicPlayManager : MonoBehaviour
    
     void Start()
     {
-        // 解析 JSON
-        if (chartJSON == null)
+        // 1️ check if any music was selected
+        if (MusicSelectData.selectedSong == null)
         {
-            Debug.LogError("Chart JSON not assigned!");
+            Debug.LogError("No song selected!");
             return;
         }
 
-        chart = JsonUtility.FromJson<Chart>(chartJSON.text);
-        if (chart == null || chart.notes.Length == 0)
-        {
-            Debug.LogError("Failed to parse chart or chart has no notes!");
-            return;
-        }
-        Debug.Log($"Chart loaded: {chart.songName}, Notes count = {chart.notes.Length}");
+        SongData song = MusicSelectData.selectedSong;
 
-        // 播放音乐
-        if (musicClip != null)
-        {
-            audioSource.clip = musicClip;
-        }
-        else
-        {
-            Debug.LogWarning("No AudioClip assigned, make sure JSON contains audio or assign manually.");
-        }
-
+        // 2️ play music
+        audioSource.clip = song.musicClip;
         audioSource.Play();
 
-        // 开始生成音符
+        // 3️ resolve json file
+        chart = JsonUtility.FromJson<Chart>(song.chartData.text);
+        Debug.Log($"Playing: {chart.songName}, Notes: {chart.notes.Length}");
+
+        // start spawn notes
         StartCoroutine(SpawnNotes());
     }
 
     void Update()
     {
         if (PauseManager.isPaused) return;
-        // 检测音乐结束
+        // check if music has finished playing
         if (!audioSource.isPlaying && audioSource.time > 0.1f)
         {
             Debug.Log("Song finished!");
@@ -86,21 +74,21 @@ public class MusicPlayManager : MonoBehaviour
     {
         foreach (var note in chart.notes)
         {
-            // 等待到音符对应时间
+            // Waiting for the corresponding time of the note
             //yield return new WaitUntil(() => audioSource.time >= note.time);
             yield return new WaitUntil(() => !PauseManager.isPaused && audioSource.time >= note.time);
 
-            // 选择 prefab 和 spawn point
+            // choose prefab and spawn point
             GameObject prefab = note.lane == "top" ? enemyTopPrefab : enemyBottomPrefab;
             Transform spawnPoint = note.lane == "top" ? topLane : bottomLane;
 
             Vector3 spawnPos = new Vector3(
                 spawnPoint.position.x,
-                prefab.transform.position.y, // 保留 prefab Y，如果 prefab 自带偏移
+                prefab.transform.position.y, // keep prefab Y，if prefab has offset
                 prefab.transform.position.z
             );
 
-            // 生成敌人
+            // spawn enemies
             Instantiate(prefab, spawnPos, Quaternion.identity);
         }
     }

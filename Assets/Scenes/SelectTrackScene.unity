@@ -459,6 +459,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allSongs:
   - {fileID: 11400000, guid: ddcd4f7e6d56971488fec311e250962c, type: 2}
+  - {fileID: 11400000, guid: 0c143e19ef8800f43a17d3fb7c439f97, type: 2}
   contentParent: {fileID: 1446822456}
   songButtonPrefab: {fileID: 5733515847555182406, guid: b931d346785bd57458e86e3f0ddb1bb8, type: 3}
   playButton: {fileID: 1597185442}

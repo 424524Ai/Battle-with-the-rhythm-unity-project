@@ -3,7 +3,14 @@ guid: b6cc9384e71da194bba5e36a95e912ac
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - audioSource: {instanceID: 0}
+  - chartJSON: {instanceID: 0}
+  - musicClip: {instanceID: 0}
+  - enemyTopPrefab: {fileID: 4238974318839076145, guid: 0c83e982e8ff7ef48a2a5b36461be8ef, type: 3}
+  - enemyBottomPrefab: {fileID: 4238974318839076145, guid: 2a6de43cb83f01c4d9f4c15cc99938ea, type: 3}
+  - topLane: {instanceID: 0}
+  - bottomLane: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

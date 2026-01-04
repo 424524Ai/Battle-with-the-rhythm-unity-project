@@ -6,17 +6,17 @@ using UnityEngine.UI;
 using TMPro;
 public class SongSelectManager : MonoBehaviour
 {
-    public List<SongData> allSongs;        // 拖入所有可选曲目
-    public Transform contentParent;        // ScrollView 的 Content
-    public GameObject songButtonPrefab;    // 曲目按钮预制体
-    public Button playButton;              // 右下角 Play 按钮
+    public List<SongData> allSongs;        // drag in all available songs
+    public Transform contentParent;        // Content of ScrollView 
+    public GameObject songButtonPrefab;    // song button prefab
+    public Button playButton;              
 
     private SongSelectButton currentSelected;
 
     // Start is called before the first frame update
     void Start()
     {
-        // 初始化 ScrollView
+        // Initialise ScrollView
         foreach (var song in allSongs)
         {
             GameObject btn = Instantiate(songButtonPrefab, contentParent);
@@ -55,10 +55,10 @@ public class SongSelectManager : MonoBehaviour
             return;
         }
 
-        // 保存选择的曲目信息
+        // save selected music data
         MusicSelectData.selectedSong = currentSelected.songData;
 
-        // 进入游戏场景
+        // enter music play scene 
         SceneManager.LoadScene("MusicPlayScene");
     }
 

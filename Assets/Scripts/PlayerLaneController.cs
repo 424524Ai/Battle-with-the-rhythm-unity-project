@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class PlayerLaneController : MonoBehaviour
 {
-    public Transform topLane;    // 上轨道位置
-    public Transform bottomLane; // 下轨道位置
+    public Transform topLane;    // top lane position
+    public Transform bottomLane; // bottom lane position
 
     private bool isOnTopLane = false;
 
     void Start()
     {
-        // 初始在下轨道
+        // starts at bottom lane
         SetLanePosition(bottomLane);
     }
 
@@ -33,7 +33,7 @@ public class PlayerLaneController : MonoBehaviour
     void SetLanePosition(Transform lane)
     {
         Vector3 newPos = transform.position;
-        newPos.y = lane.position.y;  // 只改y
+        newPos.y = lane.position.y;  // only change y
         transform.position = newPos;
     }
 }

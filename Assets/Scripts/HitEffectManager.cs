@@ -14,7 +14,7 @@ public class HitEffectManager : MonoBehaviour
 
     public void ShowHitResult(string result)
     {
-        StopAllCoroutines(); // 避免多次重叠
+        StopAllCoroutines(); // Avoid multiple overlaps
         StartCoroutine(ShowHitCoroutine(result));
     }
 
@@ -36,7 +36,7 @@ public class HitEffectManager : MonoBehaviour
         }
 
         hitText.alpha = 1f;
-        float duration = 0.5f; // 淡出时长
+        float duration = 0.5f; // Fade-out duration
         float timer = 0f;
 
         while (timer < duration)
